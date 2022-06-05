@@ -1,4 +1,4 @@
-from customer_payment_summary import Summary, CustomerPaymentSummaryResult
+from customer_payment_summary import Summary
 from filter_payment_summaries import not_fully_paid, rank_bankrupts
 import persistance.database_reset as database_reset
 from persistance.load_database import load_database_into_repo
@@ -15,7 +15,7 @@ def main():
     summary = Summary(repo_load).customer_payment_summary()
     bad_clients = not_fully_paid(summary)
 
-    for bankrupt in rank_bankrupts(bad_clients)[5:]:
+    for bankrupt in rank_bankrupts(bad_clients):
         print(format_bankrupt(bankrupt))
 
 
